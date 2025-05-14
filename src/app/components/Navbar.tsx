@@ -3,13 +3,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { FiMoon, FiSun } from 'react-icons/fi';
+import { useContext } from 'react';
+import { DarkModeContext } from '../Providers';
 
-interface NavbarProps {
-  darkMode: boolean;
-  setDarkMode: (darkMode: boolean) => void;
-}
 
-const Navbar = ({ darkMode, setDarkMode }: NavbarProps) => {
+const Navbar = () => {
+     const { darkMode, setDarkMode } = useContext(DarkModeContext);
   return (
     <nav className="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

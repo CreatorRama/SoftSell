@@ -1,27 +1,27 @@
-// app/Providers.tsx
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+
+// Create a context for dark mode
+export const DarkModeContext = React.createContext<{
+  darkMode: boolean;
+  setDarkMode: (darkMode: boolean) => void;
+}>(null!);
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Add or remove dark class on HTML element when darkMode changes
   useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
 
   return (
-    <>
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+    <DarkModeContext.Provider value={{ darkMode, setDarkMode }}>
+      <Navbar />
       {children}
       <Footer />
-    </>
+    </DarkModeContext.Provider>
   );
 }

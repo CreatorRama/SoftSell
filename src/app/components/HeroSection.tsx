@@ -1,13 +1,13 @@
 'use client';
 
 import { FiArrowRight } from 'react-icons/fi';
+import { useContext } from 'react';
+import { DarkModeContext } from '../Providers';
 
-interface HeroSectionProps {
-  darkMode: boolean;
-  setDarkMode: (darkMode: boolean) => void;
-}
 
-const HeroSection = ({ darkMode, setDarkMode }: HeroSectionProps) => {
+
+const HeroSection = () => {
+     const { darkMode, setDarkMode } = useContext(DarkModeContext);
   return (
     <section className="relative bg-gradient-to-r from-blue-500 to-indigo-600 dark:from-blue-600 dark:to-indigo-700 text-white py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
